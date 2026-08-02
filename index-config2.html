@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New tab</title>
+
+  <style>
+    html {
+      align-items: center;
+      background-color: #111;
+      background-image: url("https://w.wallhaven.cc/full/qr/wallhaven-qrmykq.png");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #ded8d5;
+      display: flex;
+      font: 22px "Courier New", Courier, monospace;
+      height: 100%;
+      justify-content: center;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      margin: 1em;
+      padding: 1em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0;
+      text-align: center;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus,
+    a:hover {
+      color: #1d81b2;
+    }
+
+    nav {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      margin: 0 1em;
+      min-width: 24em;
+      padding: 1em 0;
+    }
+
+    .general-toggle-input {
+      display: none;
+    }
+
+    .general-toggle {
+      cursor: pointer;
+      display: inline-block;
+      font-weight: bold;
+      line-height: 2em;
+      user-select: none;
+    }
+
+    .general-toggle:focus,
+    .general-toggle:hover {
+      color: #A8A8A8;
+    }
+
+    #quick-links {
+      bottom: 2em;
+      display: flex;
+      flex-direction: row;
+      gap: 2em;
+      left: 50%;
+      list-style-type: none;
+      margin: 0;
+      opacity: 0;
+      padding: 0;
+      pointer-events: none;
+      position: fixed;
+      transform: translate(-50%, 16px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      white-space: nowrap;
+    }
+
+    .general-toggle-input:checked ~ #quick-links {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+
+    .divider {
+      color: #ded8d5;
+      opacity: 0.5;
+    }
+
+    img {
+      border: 2px solid #313131;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+      height: auto;
+      object-fit: cover;
+      object-position: 50% 100%;
+      width: 8em;
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" class="general-toggle-input" id="general-toggle">
+
+  <nav>
+    <h1>Zen Browser</h1>
+    <label for="general-toggle" class="general-toggle" tabindex="0">General</label>
+  </nav>
+
+  <ul id="quick-links">
+    <li><a href="https://claude.ai/new">Claude</a></li>
+    <li><a href="https://gemini.google.com/app">Gemini</a></li>
+    <li><a href="https://chatgpt.com/">ChatGPT</a></li>
+    <li class="divider">|</li>
+    <li><a href="https://docs.google.com/document/">Docs</a></li>
+    <li><a href="https://mail.google.com/mail/">Gmail</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/u/">Sheets</a></li>
+    <li><a href="https://drive.google.com/drive/u/">Drive</a></li>
+    <li class="divider">|</li>
+    <li><a href="https://fmhy.net/">FMHY</a></li>
+    <li><a href="Pinterest">Pinterest</a></li>
+    <li><a href="https://www.youtube.com/">YouTube</a></li>
+  </ul>
+
+  <img src="https://i.ibb.co/whHj7YMW/SAO-18.jpg">
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "zen-newtab-bg";
+
+      function applyBackground(value) {
+        if (value) {
+          document.documentElement.style.backgroundImage = 'url("' + value + '")';
+        } else {
+          document.documentElement.style.backgroundImage = "";
+        }
+      }
+
+      // Restore saved background on load
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) applyBackground(saved);
+      } catch (e) {
+        console.warn("Could not read saved background image:", e);
+      }
+    })();
+  </script>
+</body>
+</html>
